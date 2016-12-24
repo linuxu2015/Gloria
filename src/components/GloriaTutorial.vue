@@ -1,12 +1,12 @@
 <template>
   <div class="gloria-tutorial">
     <p>{{ 'EmptyTaskListDescription' | i18n}}</p>
-    <p>{{{ 'InstallTaskFrom' | i18n }}}</p>
+    <p v-html="i18n('InstallTaskFrom')"></p>
     <p>{{ 'Or' | i18n }}</p>
     <div class="row">
       <gloria-task-creator></gloria-task-creator><p>{{ 'CreateTask' | i18n }}</p>
     </div>
-    <p>{{{ 'DocumentDescription' | i18n }}}</p>
+    <p v-html="i18n('DocumentDescription')"></p>
   </div>
 </template>
 

@@ -33,9 +33,10 @@
     "stylus-loader": "^2.4.0",
     "vue-hot-reload-api": "^2.0.6",
     "vue-html-loader": "^1.2.3",
-    "vue-loader": "git://github.com/BlackGlory/vue-loader.git#patch-1",
+    "vue-loader": "^10.0.2",
     "vue-style-loader": "^1.0.0",
-    "webpack": "^1.14.0",
+    "vue-template-compiler": "^2.1.6",
+    "webpack": "2.2.0-rc.2",
     "worker-loader": "^0.7.1"
   },
   "dependencies": {
@@ -50,17 +51,18 @@
     "moment": "^2.17.1",
     "normalize.css": "^5.0.0",
     "parse-favicon": "^1.1.6",
+    "pluralize": "^3.1.0",
     "redux": "^3.6.0",
     "redux-action-buffer": "^1.0.1",
     "redux-batched-actions": "^0.1.5",
     "redux-logger": "^2.7.0",
     "redux-persist": "^4.0.1",
     "redux-persist-crosstab": "^3.5.2",
-    "revue": "^2.2.0",
+    "revue": "^3.0.0",
     "rollbar-browser": "^1.9.2",
     "rx": "^4.1.0",
     "semver": "^5.3.0",
     "uuid": "^3.0.1",
-    "vue": "^1.0.26"
+    "vue": "^2.1.6"
   }
 }

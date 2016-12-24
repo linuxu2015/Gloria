@@ -42,7 +42,7 @@ export
   computed:
     validation-rules: ->
       "numeric|min:#{@min}|max:#{@max}"
-  ready: ->
+  mounted: ->
     @$watch '$data.textboxValue', ((textbox-value) ~>
       @textbox-value = get-value textbox-value, @min, @max
       @value = @textbox-value

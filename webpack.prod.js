@@ -33,16 +33,17 @@ module.exports = {
     , { ignore: ['*.ls', '*.vue'] })
   ]
 , module: {
-    loaders: [
-      { test: /\.ls$/, loader: 'livescript' }
-    , { test: /\.vue$/, loader: 'vue' }
-    , { test: /\.json$/, loader: 'json' }
+    rules: [
+      { test: /\.ls$/, loader: 'livescript-loader' }
+    , {
+        test: /\.vue$/
+      , loader: 'vue-loader'
+      , options: {
+          livescript: 'livescript-loader'
+        , stylus: 'style!css!stylus'
+        }
+      }
+    , { test: /\.json$/, loader: 'json-loader' }
     ]
-  }
-, vue: {
-    loaders: {
-      livescript: 'livescript'
-    , stylus: 'style!css!stylus'
-    }
   }
 }

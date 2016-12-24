@@ -27,7 +27,7 @@ module.exports = {
     , { ignore: ['*.ls', '*.vue'] })
   ]
 , module: {
-    loaders: [
+    rules: [
       { test: /\.ls$/, loader: 'livescript' }
     , { test: /\.vue$/, loader: 'vue' }
     , { test: /\.json$/, loader: 'json' }

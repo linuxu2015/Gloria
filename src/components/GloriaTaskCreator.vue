@@ -3,14 +3,14 @@
 
     <gloria-fab type="mini" @click="showNewDialogCode = true" color="primary" icon="add"></gloria-fab>
 
-    <ui-modal :show.sync="showNewDialogCode" :header="'PasteYourCode' | i18n" :backdrop-dismissible="false">
+    <ui-modal :show.sync="showNewDialogCode" :header="i18n('PasteYourCode')" :backdrop-dismissible="false">
       <ui-textbox
-        :label="'TaskCode' | i18n"
+        :label="i18n('TaskCode')"
         :multi-line="true"
         icon="code"
         name="code"
         :value.sync="code"
-        :placeholder="'PasteYourFantasticCodeHere' | i18n"
+        :placeholder="i18n('PasteYourFantasticCodeHere')"
       ></ui-textbox>
       <div slot="footer">
         <ui-button @click="switchDialog('showNewDialogCode', 'showNewDialogName')" color="primary">{{ 'Next' | i18n }}</ui-button>
@@ -18,19 +18,19 @@
       </div>
     </ui-modal>
 
-    <ui-modal :show.sync="showNewDialogName" :header="'GiveItName' | i18n" :backdrop-dismissible="false">
-      <ui-textbox name="name" :value.sync="name" :label="'TaskName' | i18n" type="text" :placeholder="'InputTaskName' | i18n"></ui-textbox>
+    <ui-modal :show.sync="showNewDialogName" :header="i18n('GiveItName')" :backdrop-dismissible="false">
+      <ui-textbox name="name" :value.sync="name" :label="i18n('TaskName')" type="text" :placeholder="i18n('InputTaskName')"></ui-textbox>
       <div slot="footer">
         <ui-button @click="switchDialog('showNewDialogName', 'showNewDialogConfig')" color="primary">{{ 'Next' | i18n }}</ui-button>
         <ui-button @click="switchDialog('showNewDialogName', 'showNewDialogCode')">{{ 'Back' | i18n }}</ui-button>
       </div>
     </ui-modal>
 
-    <ui-modal :show.sync="showNewDialogConfig" :header="'FinalConfiguration' | i18n" :backdrop-dismissible="false">
+    <ui-modal :show.sync="showNewDialogConfig" :header="i18n('FinalConfiguration')" :backdrop-dismissible="false">
       <gloria-numberbox
         icon="event"
         name="triggerInterval"
-        :label="'TriggerInterval' | i18n"
+        :label="i18n('TriggerInterval')"
         :min="1"
         :max="60 * 24"
         :value.sync="triggerInterval"
@@ -43,7 +43,7 @@
       </div>
     </ui-modal>
 
-    <ui-modal :show.sync="showErrorDialog" :header="'Error' | i18n">
+    <ui-modal :show.sync="showErrorDialog" :header="i18n('Error')">
       {{ error }}
     </ui-modal>
 

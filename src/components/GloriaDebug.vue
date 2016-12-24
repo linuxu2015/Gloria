@@ -5,7 +5,7 @@
       <header>{{ 'ImportAndExport' | i18n }}</header>
       <article>
         <input
-          v-el:import-file-chooser
+          ref="importFileChooser"
           type="file"
           multiple
           accept=".json"
@@ -13,7 +13,7 @@
           @change="handleFileChoose"
         />
         <ui-button @click="importTasks">{{ 'ImportTasks' | i18n }}</ui-button>
-        <a v-el:downloader download="tasks.json" style="display: none"></a>
+        <a ref="downloader" download="tasks.json" style="display: none"></a>
         <ui-button @click="exportTasks">{{ 'ExportTasks' | i18n }}</ui-button>
       </article>
     </section>
@@ -24,21 +24,19 @@
         <ui-textbox
           icon="code"
           name="code"
-          :label="'TestCode' | i18n"
+          :label="i18n('TestCode')"
           :multi-line="true"
           :value.sync="testCode"
-          :placeholder="'PasteYourTestCodeHere' | i18n"
+          :placeholder="i18n('PasteYourTestCodeHere')"
         ></ui-textbox>
         <ui-button @click="evalTest">{{ 'Test' | i18n }}</ui-button>
         <ui-alert
           type="error"
           :dismissible="false"
           v-show="testError"
-        >
-          {{{ testError | n2br | nbsp }}}
-        </ui-alert>
-        <ui-alert v-show="testResult" :dismissible="false" hide-icon>
-          {{{ testResult | json | n2br | nbsp}}}
+          v-html="nbsp(n2br(testError))"
+        ></ui-alert>
+        <ui-alert v-show="testResult" :dismissible="false" hide-icon v-html="nbsp(n2br(json('testResult')))">
         </ui-alert>
       </article>
     </section>
@@ -49,10 +47,10 @@
         <ui-textbox
           icon="code"
           name="code"
-          :label="'ReducerCode' | i18n"
+          :label="i18n('ReducerCode')"
           :multi-line="true"
           :value.sync="notificationReducer"
-          :placeholder="'PasteYourReducerCodeHere' | i18n"
+          :placeholder="i18n('PasteYourReducerCodeHere')"
         ></ui-textbox>
         <ui-button @click="setNotificationReducer">{{ 'Save' | i18n }}</ui-button>
       </article>
@@ -68,9 +66,9 @@
             type="danger"
             confirm-button-icon="delete"
             close-on-confirm
-            :header="'ClearHistory' | i18n"
-            :confirm-button-text="'Clear' | i18n"
-            :deny-button-text="'Cancel' | i18n"
+            :header="i18n('ClearHistory')"
+            :confirm-button-text="i18n('Clear')"
+            :deny-button-text="i18n('Cancel')"
             :show.sync="showClearHistoryConfirm"
             @confirmed="(clearHistory(), showClearHistoryConfirm = false)"
             @denied="showClearHistoryConfirm = false"
@@ -86,9 +84,9 @@
             type="danger"
             confirm-button-icon="delete"
             close-on-confirm
-            :header="'ClearTasks' | i18n"
-            :confirm-button-text="'Clear' | i18n"
-            :deny-button-text="'Cancel' | i18n"
+            :header="i18n('ClearTasks')"
+            :confirm-button-text="i18n('Clear')"
+            :deny-button-text="i18n('Cancel')"
             :show.sync="showClearTasksConfirm"
             @confirmed="(clearTasks(), showClearTasksConfirm = false)"
             @denied="showClearTasksConfirm = false"
@@ -104,9 +102,9 @@
             type="danger"
             confirm-button-icon="delete"
             close-on-confirm
-            :header="'ClearStages' | i18n"
-            :confirm-button-text="'Clear' | i18n"
-            :deny-button-text="'Cancel' | i18n"
+            :header="i18n('ClearStages')"
+            :confirm-button-text="i18n('Clear')"
+            :deny-button-text="i18n('Cancel')"
             :show.sync="showClearStagesConfirm"
             @confirmed="(clearStages(), showClearStagesConfirm = false)"
             @denied="showClearStagesConfirm = false"
@@ -123,9 +121,9 @@
             type="danger"
             confirm-button-icon="delete"
             close-on-confirm
-            :header="'ClearCaches' | i18n"
-            :confirm-button-text="'Clear' | i18n"
-            :deny-button-text="'Cancel' | i18n"
+            :header="i18n('ClearCaches')"
+            :confirm-button-text="i18n('Clear')"
+            :deny-button-text="i18n('Cancel')"
             :show.sync="showClearCachesConfirm"
             @confirmed="(clearCaches(), showClearCachesConfirm = false)"
             @denied="showClearCachesConfirm = false"
@@ -141,7 +139,7 @@
       <article class="inside">
         <ui-button @click="startObserveStateChange" v-show="!unsubscribe">{{ 'StartObserveStateChange' | i18n }}</ui-button>
         <ui-button @click="stopObserveStateChange" v-show="unsubscribe">{{ 'StopObserveStateChange' | i18n }}</ui-button>
-        <div class="state">{{{ state | json | n2br | nbsp }}}</div>
+        <div class="state" v-html="nbsp(n2br(json(state)))"></div>
       </article>
     </section>
   </div>
@@ -171,7 +169,7 @@ export
     configs:
       type: Object
       default: {}
-  ready: ->
+  mounted: ->
     @$watch 'configs.NotificationReducer', ((val) ~>
       @$data.notification-reducer = val
     ), immediate: true

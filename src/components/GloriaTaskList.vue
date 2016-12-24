@@ -1,6 +1,6 @@
 <template>
   <div class="gloria-task-list">
-    <template v-for="task in tasks" track-by="id">
+    <template v-for="task in tasks" v-bind:key="task.id">
       <gloria-task
         :id="task.id"
         :name="task.name"

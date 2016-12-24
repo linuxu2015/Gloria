@@ -1,6 +1,6 @@
 <template>
   <div class="gloria-notification-list">
-    <template v-for="notification in notifications" track-by="id">
+    <template v-for="notification in notifications" v-bind:key="notification.id">
       <gloria-notification :options="notification.options"></gloria-notification>
     </template>
   </div>

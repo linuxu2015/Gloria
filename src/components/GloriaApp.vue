@@ -7,7 +7,7 @@
       raised
     >
 
-      <ui-tab icon="format_list_bulleted" :header="'Task' | i18n">
+      <ui-tab icon="format_list_bulleted" :header="i18n('Task')">
         <template v-if="tasks.length > 0">
           <gloria-task-list :tasks="tasks"></gloria-task-list>
           <gloria-task-creator></gloria-task-creator>
@@ -18,7 +18,7 @@
         </template>
       </ui-tab>
 
-      <ui-tab icon="history" :header="'History' | i18n">
+      <ui-tab icon="history" :header="i18n('History')">
         <template v-if="notifications.length > 0">
           <gloria-notification-list :notifications="notifications"></gloria-notification-list>
         </template>
@@ -27,7 +27,7 @@
         </div>
       </ui-tab>
 
-      <ui-tab icon="settings" :header="'Advanced' | i18n">
+      <ui-tab icon="settings" :header="i18n('Advanced')">
         <gloria-debug :configs="configs"></gloria-debug>
       </ui-tab>
 

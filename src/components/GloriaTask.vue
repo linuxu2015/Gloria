@@ -8,8 +8,8 @@
           <div class="col-xs">
             <p><span>{{ name }}</span>
             <div class="row between-xs">
-              <p>{{ 'TriggerCount' | i18n triggerCount }} {{ triggerCount | pluralize 'NounsTime' | i18n }}, {{ 'PushCount' | i18n pushCount }} {{ pushCount | pluralize 'NounsNotification' | i18n }}</p>
-              <p v-if="pushDate">{{ 'PushDate' | i18n pushDateRelative }}</p>
+              <p>{{ i18n('TriggerCount', triggerCount) }} {{ pluralize(triggerCount, i18n('NounsTime')) }}, {{ i18n('PushCount', pushCount) }} {{ i18n('NounsNotification') }}</p>
+              <p v-if="pushDate">{{ i18n('PushDate', pushDateRelative) }}</p>
             </div>
           </div>
 
@@ -26,7 +26,7 @@
           <gloria-numberbox
             icon="event"
             name="triggerInterval"
-            :label="'TriggerInterval' | i18n"
+            :label="i18n('TriggerInterval')"
             :min="1"
             :max="60 * 24"
             :value.sync="triggerInterval"
@@ -37,19 +37,19 @@
         </div>
 
         <div class="col-xs-3 end-xs">
-          <ui-icon-button v-show="origin" @click="showRemoveOriginConfirm = true" icon="content_cut" type="flat" :tooltip="'CutOffSource' | i18n"></ui-icon-button>
-          <ui-icon-button @click="showEditDialog = true" icon="edit" type="flat" :tooltip="'Edit' | i18n"></ui-icon-button>
-          <ui-icon-button @click="showDeleteConfirm = true" icon="delete_forever" type="flat" :tooltip="'Delete' | i18n"></ui-icon-button>
+          <ui-icon-button v-show="origin" @click="showRemoveOriginConfirm = true" icon="content_cut" type="flat" :tooltip="i18n('CutOffSource')"></ui-icon-button>
+          <ui-icon-button @click="showEditDialog = true" icon="edit" type="flat" :tooltip="i18n('Edit')"></ui-icon-button>
+          <ui-icon-button @click="showDeleteConfirm = true" icon="delete_forever" type="flat" :tooltip="i18n('Delete')"></ui-icon-button>
         </div>
 
       </div>
     </ui-collapsible>
 
     <ui-confirm
-      :header="'CutOffSource' | i18n"
+      :header="i18n('CutOffSource')"
       type="warning"
-      :confirm-button-text="'CutOff' | i18n"
-      :deny-button-text="'Cancel' | i18n"
+      :confirm-button-text="i18n('CutOff')"
+      :deny-button-text="i18n('Cancel')"
       confirm-button-icon="content_cut"
       @confirmed="(removeOrigin(), showRemoveOriginConfirm = false)"
       @denied="showRemoveOriginConfirm = false"
@@ -59,15 +59,15 @@
       {{ 'CutOffSourceConfirm' | i18n }}
     </ui-confirm>
 
-    <ui-modal @opened="setEditDialog" @closed="setEditDialog" :show.sync="showEditDialog" :header="'Editor' | i18n">
-      <ui-textbox name="editableName" :value.sync="editableName" :label="'TaskName' | i18n" type="text" :placeholder="'InputTaskName' | i18n"></ui-textbox>
+    <ui-modal @opened="setEditDialog" @closed="setEditDialog" :show.sync="showEditDialog" :header="i18n('Editor')">
+      <ui-textbox name="editableName" :value.sync="editableName" :label="i18n('TaskName')" type="text" :placeholder="i18n('InputTaskName')"></ui-textbox>
       <ui-textbox
-        :label="'TaskCode' | i18n"
+        :label="i18n('TaskCode')"
         :multi-line="true"
         icon="code"
         name="editableCode"
         :value.sync="editableCode"
-        :placeholder="'PasteYourFantasticCodeHere' | i18n"
+        :placeholder="i18n('PasteYourFantasticCodeHere')"
       ></ui-textbox>
       <div slot="footer">
         <ui-button @click="(updateTask(), showEditDialog = false)" color="primary">{{ 'Save' | i18n }}</ui-button>
@@ -76,10 +76,10 @@
     </ui-modal>
 
     <ui-confirm
-      :header="'DeleteTask' | i18n"
+      :header="i18n('DeleteTask')"
       type="danger"
-      :confirm-button-text="'Delete' | i18n"
-      :deny-button-text="'Cancel' | i18n"
+      :confirm-button-text="i18n('Delete')"
+      :deny-button-text="i18n('Cancel')"
       confirm-button-icon="delete_forever"
       @confirmed="(removeTask(), showDeleteConfirm = false)"
       @denied="showDeleteConfirm = false"

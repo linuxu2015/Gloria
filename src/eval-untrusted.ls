@@ -2,8 +2,8 @@
 
 require! 'prelude-ls': { map, join, each }
 require! 'uuid/v4': uuid-v4
-require! 'worker!./worker.ls': EvalWorker
-require! 'raw!gloria-utils': gloria-utils
+require! 'worker-loader!./worker.ls': EvalWorker
+require! 'raw-loader!gloria-utils': gloria-utils
 
 function get-origin url
   (new URL url).origin
