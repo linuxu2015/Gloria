@@ -39,8 +39,10 @@ module.exports = {
         test: /\.vue$/
       , loader: 'vue-loader'
       , options: {
-          livescript: 'livescript-loader'
-        , stylus: 'style!css!stylus'
+          loaders: {
+            livescript: 'livescript-loader'
+          , stylus: 'style-loader!css-loader!stylus-loader'
+          }
         }
       }
     , { test: /\.json$/, loader: 'json-loader' }

@@ -28,15 +28,18 @@ module.exports = {
   ]
 , module: {
     rules: [
-      { test: /\.ls$/, loader: 'livescript' }
-    , { test: /\.vue$/, loader: 'vue' }
-    , { test: /\.json$/, loader: 'json' }
+      { test: /\.ls$/, loader: 'livescript-loader' }
+    , {
+        test: /\.vue$/
+      , loader: 'vue-loader'
+      , options: {
+          loaders: {
+            livescript: 'livescript-loader'
+          , stylus: 'style-loader!css-loader!stylus-loader'
+          }
+        }
+      }
+    , { test: /\.json$/, loader: 'json-loader' }
     ]
-  }
-, vue: {
-    loaders: {
-      livescript: 'livescript'
-    , stylus: 'style!css!stylus'
-    }
   }
 }
